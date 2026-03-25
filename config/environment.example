@@ -1,0 +1,19 @@
+# Apex Circle Landing Environment Variables
+
+# Public links used in CTA sections
+NEXT_PUBLIC_APEX_LINKEDIN_URL=https://www.linkedin.com/company/apex-circle-official/
+NEXT_PUBLIC_APEX_DISCORD_URL=https://discord.com/invite/K5PEUWnjYs
+NEXT_PUBLIC_APEX_WHATSAPP_URL=https://whatsapp.com/channel/0029VbB9L7CHQbS20TBFgC1R
+NEXT_PUBLIC_APEX_CONTACT_EMAIL=apexcircleofficial2025@gmail.com
+NEXT_PUBLIC_APEX_CONTACT_PHONE=+916291129896
+
+# Optional analytics and contact integrations
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
+RESEND_API_KEY=
+FROM_EMAIL=noreply@apexcircle.in
+
+# App runtime
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+NODE_ENV=development
+LOG_LEVEL=info
