@@ -30,7 +30,7 @@ export const ProductTeaserCard = (props: ProductTeaserCardProps) => {
     primaryButtonHref = "https://whatsapp.com/channel/0029VbB9L7CHQbS20TBFgC1R",
     secondaryButtonText = "Email Us",
     secondaryButtonHref = "mailto:apexcircleofficial2025@gmail.com",
-    heroImageSrc = "/auditorium-calcutta-hacks.jpg",
+    heroImageSrc = "/placeholder.jpg",
   } = props
 
   // @return

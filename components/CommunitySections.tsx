@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { CalendarDays, Camera, Users, MessageSquare, Mail, Phone, Linkedin, MessageCircle } from "lucide-react"
+import { CalendarDays, Camera, Users, MessageSquare, Mail, Phone, Linkedin, MessageCircle, ArrowLeft, ArrowRight, Sparkles } from "lucide-react"
 
 const galleryItems = [
   {
@@ -31,36 +32,69 @@ const teamCrews = [
     crew: "Founding Crew",
     focus: "Sets vision, drives strategy, and steers community growth.",
     scope: "Leadership",
+    asset: "/placeholder.jpg",
+    accent: "from-sky-500/30 to-blue-700/20",
+    pulse: "Vision Sprint 92%",
+    members: [
+      "Soumodweep Das - Founder",
+      "Souvik Ghosh - Co-Founder",
+      "Pritam Das - Co-Founder",
+      "Yuvraj Prasad - Co-Founder",
+    ],
   },
   {
     crew: "Program Crew",
     focus: "Designs hackathons, workshops, and learning tracks across AI, security, and dev.",
     scope: "Programs & Curriculum",
+    asset: "/images.jpg",
+    accent: "from-cyan-500/30 to-emerald-600/20",
+    pulse: "Tracks Delivered 18+",
+    members: ["Hackathon Flow Owners", "Workshop Architects", "Mentor Coordinators", "Track Curators"],
   },
   {
     crew: "Community Operations Crew",
     focus: "Onboards members, runs engagement loops, and supports chapter activities.",
     scope: "Community Ops",
+    asset: "/placeholder.jpg",
+    accent: "from-fuchsia-500/25 to-indigo-600/20",
+    pulse: "Member Engagement High",
+    members: ["Onboarding Leads", "Community Managers", "Experience Team", "Support Desk"],
   },
   {
     crew: "Tech & Product Crew",
     focus: "Builds internal tools, event systems, and digital community experiences.",
     scope: "Engineering",
+    asset: "/image-man.jpeg",
+    accent: "from-blue-500/30 to-slate-700/20",
+    pulse: "Platform Uptime 99.9%",
+    members: ["Frontend Squad", "Backend Squad", "Automation Team", "Product Builders"],
   },
   {
     crew: "Design & Media Crew",
     focus: "Shapes branding, visual storytelling, and communication assets for Apex Circle.",
     scope: "Design",
+    asset: "/images.jpg",
+    accent: "from-violet-500/30 to-pink-600/20",
+    pulse: "Brand Reach Growing",
+    members: ["Visual Designers", "Social Creators", "Video Editors", "Content Designers"],
   },
   {
     crew: "Partnerships Crew",
     focus: "Manages sponsor collaborations, ecosystem relationships, and outreach partnerships.",
     scope: "Partnerships",
+    asset: "/placeholder.jpg",
+    accent: "from-emerald-500/30 to-teal-700/20",
+    pulse: "Partner Pipeline Active",
+    members: ["Sponsor Relations", "Ecosystem Team", "Community Alliances", "Outreach Leads"],
   },
   {
     crew: "Event Logistics Crew",
     focus: "Executes timelines, venue operations, and seamless on-ground event flow.",
     scope: "Execution",
+    asset: "/placeholder.jpg",
+    accent: "from-amber-500/30 to-orange-700/20",
+    pulse: "Runbook Readiness 96%",
+    members: ["Operations Leads", "Venue Coordinators", "Volunteer Managers", "Stage & AV Team"],
   },
 ]
 
@@ -132,10 +166,17 @@ export const CommunitySections = () => {
             </h2>
           </div>
           <div className="relative rounded-2xl border border-border bg-card dark:bg-secondary p-6 md:p-8 overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(21,109,149,0.18),transparent_40%)]" />
             <div className="flex items-center justify-between mb-6">
-              <p className="text-sm text-muted-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                Apex Circle Team Crews
-              </p>
+              <div>
+                <p className="text-sm text-muted-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                  Apex Circle Team Crews
+                </p>
+                <p className="text-xs text-muted-foreground/80 mt-1 inline-flex items-center gap-2" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                  <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  Premium team snapshots and live crew highlights
+                </p>
+              </div>
               <div className="flex items-center gap-2">
                 {teamCrews.map((_, index) => (
                   <button
@@ -154,33 +195,76 @@ export const CommunitySections = () => {
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="rounded-xl border border-border/80 bg-background/60 p-6 md:p-8"
+              className={`rounded-xl border border-border/80 bg-background/70 p-5 sm:p-6 md:p-8 bg-gradient-to-br ${teamCrews[activeCrewIndex].accent}`}
             >
-              <p className="text-xs uppercase tracking-[0.16em] text-primary mb-3" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                {teamCrews[activeCrewIndex].scope}
-              </p>
-              <h3 className="text-2xl md:text-3xl text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 500 }}>
-                {teamCrews[activeCrewIndex].crew}
-              </h3>
-              <p className="text-base md:text-lg text-muted-foreground mt-4 max-w-3xl" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                {teamCrews[activeCrewIndex].focus}
-              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
+                <div className="lg:col-span-3">
+                  <p className="text-xs uppercase tracking-[0.16em] text-primary mb-3" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                    {teamCrews[activeCrewIndex].scope}
+                  </p>
+                  <h3 className="text-2xl md:text-3xl text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 500 }}>
+                    {teamCrews[activeCrewIndex].crew}
+                  </h3>
+                  <p className="text-base md:text-lg text-muted-foreground mt-4 max-w-3xl" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                    {teamCrews[activeCrewIndex].focus}
+                  </p>
+                  <div className="mt-5 inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                    {teamCrews[activeCrewIndex].pulse}
+                  </div>
+                  {teamCrews[activeCrewIndex].members && (
+                    <ul className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {teamCrews[activeCrewIndex].members.map((member) => (
+                        <li
+                          key={member}
+                          className="text-sm text-foreground/90 bg-background/70 border border-border/70 rounded-lg px-3 py-2"
+                          style={{ fontFamily: "var(--font-figtree), Figtree" }}
+                        >
+                          {member}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                <div className="lg:col-span-2">
+                  <div className="relative h-44 sm:h-52 lg:h-full min-h-[220px] rounded-xl overflow-hidden border border-border/80">
+                    <Image
+                      src={teamCrews[activeCrewIndex].asset}
+                      alt={`${teamCrews[activeCrewIndex].crew} visual`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 35vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/20 bg-background/60 backdrop-blur px-3 py-2">
+                      <p className="text-xs text-muted-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                        Crew Snapshot
+                      </p>
+                      <p className="text-sm text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 500 }}>
+                        Building modern tech communities through execution
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             <div className="mt-6 flex gap-3">
               <button
                 type="button"
                 onClick={() => setActiveCrewIndex((prev) => (prev - 1 + teamCrews.length) % teamCrews.length)}
-                className="px-4 py-2 rounded-full border border-border text-foreground hover:border-primary/50 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground hover:border-primary/50 transition-colors"
               >
+                <ArrowLeft className="w-4 h-4" />
                 Previous
               </button>
               <button
                 type="button"
                 onClick={() => setActiveCrewIndex((prev) => (prev + 1) % teamCrews.length)}
-                className="px-4 py-2 rounded-full border border-border text-foreground hover:border-primary/50 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground hover:border-primary/50 transition-colors"
               >
                 Next
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
