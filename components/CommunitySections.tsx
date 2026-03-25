@@ -32,7 +32,7 @@ const teamCrews = [
     crew: "Founding Crew",
     focus: "Sets vision, drives strategy, and steers community growth.",
     scope: "Leadership",
-    asset: "/placeholder.jpg",
+    asset: "/auditorium-calcutta-hacks.jpg",
     accent: "from-sky-500/30 to-blue-700/20",
     pulse: "Vision Sprint 92%",
     members: [
@@ -55,7 +55,7 @@ const teamCrews = [
     crew: "Community Operations Crew",
     focus: "Onboards members, runs engagement loops, and supports chapter activities.",
     scope: "Community Ops",
-    asset: "/placeholder.jpg",
+    asset: "/auditorium-calcutta-hacks.jpg",
     accent: "from-fuchsia-500/25 to-indigo-600/20",
     pulse: "Member Engagement High",
     members: ["Onboarding Leads", "Community Managers", "Experience Team", "Support Desk"],
@@ -68,6 +68,7 @@ const teamCrews = [
     accent: "from-blue-500/30 to-slate-700/20",
     pulse: "Platform Uptime 99.9%",
     members: ["Frontend Squad", "Backend Squad", "Automation Team", "Product Builders"],
+    groupAsset: "/auditorium-calcutta-hacks.jpg",
   },
   {
     crew: "Design & Media Crew",
@@ -77,29 +78,33 @@ const teamCrews = [
     accent: "from-violet-500/30 to-pink-600/20",
     pulse: "Brand Reach Growing",
     members: ["Visual Designers", "Social Creators", "Video Editors", "Content Designers"],
+    groupAsset: "/auditorium-calcutta-hacks.jpg",
   },
   {
     crew: "Partnerships Crew",
     focus: "Manages sponsor collaborations, ecosystem relationships, and outreach partnerships.",
     scope: "Partnerships",
-    asset: "/placeholder.jpg",
+    asset: "/auditorium-calcutta-hacks.jpg",
     accent: "from-emerald-500/30 to-teal-700/20",
     pulse: "Partner Pipeline Active",
     members: ["Sponsor Relations", "Ecosystem Team", "Community Alliances", "Outreach Leads"],
+    groupAsset: "/auditorium-calcutta-hacks.jpg",
   },
   {
     crew: "Event Logistics Crew",
     focus: "Executes timelines, venue operations, and seamless on-ground event flow.",
     scope: "Execution",
-    asset: "/placeholder.jpg",
+    asset: "/auditorium-calcutta-hacks.jpg",
     accent: "from-amber-500/30 to-orange-700/20",
     pulse: "Runbook Readiness 96%",
     members: ["Operations Leads", "Venue Coordinators", "Volunteer Managers", "Stage & AV Team"],
+    groupAsset: "/auditorium-calcutta-hacks.jpg",
   },
 ]
 
 export const CommunitySections = () => {
   const [activeCrewIndex, setActiveCrewIndex] = useState(0)
+  const [showAltAsset, setShowAltAsset] = useState<Record<number, boolean>>({})
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -228,23 +233,36 @@ export const CommunitySections = () => {
 
                 <div className="lg:col-span-2">
                   <div className="relative h-44 sm:h-52 lg:h-full min-h-[220px] rounded-xl overflow-hidden border border-border/80">
-                    <Image
-                      src={teamCrews[activeCrewIndex].asset}
-                      alt={`${teamCrews[activeCrewIndex].crew} visual`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 35vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/20 bg-background/60 backdrop-blur px-3 py-2">
-                      <p className="text-xs text-muted-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                        Crew Snapshot
-                      </p>
-                      <p className="text-sm text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 500 }}>
-                        Building modern tech communities through execution
-                      </p>
+                      <Image
+                        src={showAltAsset[activeCrewIndex] && teamCrews[activeCrewIndex].groupAsset ? teamCrews[activeCrewIndex].groupAsset : teamCrews[activeCrewIndex].asset}
+                        alt={`${teamCrews[activeCrewIndex].crew} visual`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 35vw"
+                      />
+                      {teamCrews[activeCrewIndex].groupAsset && (
+                        <button
+                          type="button"
+                          onClick={() => setShowAltAsset((s) => ({ ...s, [activeCrewIndex]: !s[activeCrewIndex] }))}
+                          className="absolute top-3 right-3 z-20 w-10 h-10 rounded-full bg-background/60 border border-border/60 flex items-center justify-center hover:scale-105 transition-transform"
+                          aria-label="Toggle group image"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M3 7h4l3-3h4l3 3h4" />
+                            <rect x="3" y="7" width="18" height="13" rx="2" />
+                          </svg>
+                        </button>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/20 bg-background/60 backdrop-blur px-3 py-2">
+                        <p className="text-xs text-muted-foreground" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                          Crew Snapshot
+                        </p>
+                        <p className="text-sm text-foreground" style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 500 }}>
+                          Building modern tech communities through execution
+                        </p>
+                      </div>
                     </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
