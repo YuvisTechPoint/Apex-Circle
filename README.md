@@ -46,7 +46,7 @@ components/
   Footer.tsx
 public/
   icon.svg
-  placeholder.jpg
+  auditorium-calcutta-hacks.jpg
 ```
 
 ## Getting Started
